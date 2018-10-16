@@ -18,8 +18,8 @@ To create databse,script involved `python Create_db.py`. In this database named 
 For storing user inputs database is used.`python interface.py`will store values provided by user.
 ![user_input](https://user-images.githubusercontent.com/25201552/47012676-65387880-d162-11e8-81f2-75c367255b90.png)
 ![database](https://user-images.githubusercontent.com/25201552/47012776-bc3e4d80-d162-11e8-8ef4-e5f97bfa7b2f.jpg)
-#### 3.Web Scraping
-We have to find the imdbID corresponding to the title of tv series provided by user.To find imdbID we use omdb(database of imdb).Using the api key of omdb i.i.`http://www.omdbapi.com/?t=title_of_series&apikey=8deaca41`we get the details about tv series in form of a json script.Then find imdbID from that script.After getting the imdbID we will be able to get the url corresponding to series at imdb.Url looks like `https://www.imdb.com/title/imdbID/`This url is further used for web scraping. We are going to use Python as our scraping language, together with a simple and powerful library, BeautifulSoup.
+#### 3. Web Scraping
+We need to find the 'imdbID' corresponding to the title of tv series provided by user. To find 'imdbID' we use omdb(database of imdb). Using the api key of omdb i.e. `http://www.omdbapi.com/?t=title_of_series&apikey=8deaca41` we get the details about tv series in form of a json script. After getting the imdbID from the script, we will be able to get the url corresponding to series at imdb. Url will look something like `https://www.imdb.com/title/imdbID/`. This url is further used for web-scraping. We are going to use Python as our scraping language, together with a simple and powerful library, BeautifulSoup.
 ![scrape](https://user-images.githubusercontent.com/25201552/47013290-4c30c700-d164-11e8-92c6-fd66083dac49.jpg)
 #### 4.Email
 For emailing we have used SMTP library.
