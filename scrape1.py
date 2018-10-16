@@ -6,121 +6,87 @@ from bs4 import BeautifulSoup
 from bs4 import BeautifulSoup as soup
 
 
-def ID(x):	
-	words=x
-	myurl1="http://www.omdbapi.com/?t=%s&apikey=8deaca41"%words
+def ID(title_series):							#function to find imdbID corresponding to given tv series title
+	
+	myurl1="http://www.omdbapi.com/?t=%s&apikey=8deaca41"%title_series  #creating omdb url from title
 	client1=ureq(myurl1)
-	print(myurl1)
 	page=json.load(client1)
 	ID=page['imdbID']
-	myurl="https://www.imdb.com/title/%s/"%ID
-	print(myurl)
-	return(myurl)
+	myurl="https://www.imdb.com/title/%s/"%ID		#imdb url to be used for scraping
+	return(myurl)						#to return the generated url 
 
 
 
-def helper(List):
+def helper(List):						#function to do scraping
 
 	status=[]
 	IMDBID=[]
 	for i in range(len(List)):
 		status1=[]
 		myurl=ID(List[i])
-		#myurl=str(myurl1)
-		#status(myurl1)
 		uclient=ureq(myurl, cafile=certifi.where())
-		page_html=uclient.read()
+		page_html=uclient.read()				#reading the content from myurl
 		uclient.close()
 		
-		page_soup=soup(page_html,"html.parser")
+		page_soup=soup(page_html,"html.parser")			#using 'beautiful soup' for scraping
+		
 		title=page_soup.h1
-		print(title.text)
-		status1.append("Title of series: %s"%title.text)
+		status1.append("Title of series: %s"%title.text)	#scraped title of tv series
 		container=page_soup.findAll("div",{"class":"table full-width"})
 		contain=container[0]	
-		#status(contain)
+		
 	
 		contain.findAll("div",{"class":"episode-widget-currentep"})
 
 		sub=contain.findAll("div",{"class":"episode-widget-currentep"})
+		if sub is None:
+        		continue 
 		if(sub==[]):
-		
-	 
 			final=contain.div.findAll("a")
 			finals=final[0]
 			number1=finals.text
-			number=int(number1)
-			#status.append("Most recent season: %d"%number)
+		
+			number=int(number1)				       #season number
 			finals_date=final[number]
 			date=finals_date.text
-			#status.append("Aired in: %s"%date)
-			DATE=int(date)
+			
+			date=number1		
+			DATE=int(date)					       #Date of release
 			if(DATE>2018):
-				print("Upcoming season: %d"%number)
-				print("Aired in: %s"%date)
-				status1.append("Upcoming season: %d"%number)
-				status1.append("Aired in: %s"%date)
+				
+				status1.append("Upcoming season: %d"%number)			#upcoming season
+				status1.append("Aired in: %s"%date)				#year in which it will be released
+				status1.append("\n")
 			elif(DATE==2018):
-				#print("Next Episode: %d"%number)
-				print("Running Season %d"%number)
-				status1.append("Running seson: %d"%number)
-				status1.append("Aired in: %s"%date)
-			elif(DATE<2017):
+				
+				status1.append("Running season: %d"%number)			#running season
+				status1.append("Aired in: %s"%date)				#year in which season started streaming
+				status1.append("\n")
+			elif(DATE<2016):
 				s="The show has finished streaming all its episodes."
-				print(s)	
 				status1.append(s)
-				print("Most recent season:%d"%number)
-				print("Aired in: %s"%date)
-				status1.append("Most recent season: %d"%number)
-				status1.append("Aired in: %s"%date)
-		else:
-			subs=sub[0]
-			subs.findAll("div",{"class":"episode-widget-airdate"})
-			dd=subs.findAll("div",{"class":"episode-widget-airdate"})
-			dds=dd[0]
-			dds.text
-			#status.append(dds.text)
-			ddttitle=subs.findAll("div",{"class":"episode-widget-title"})
-			ddttitles=ddttitle[0]
-			title=ddttitles.a
-			title.text
-			status1=contain.h4
-			#status1.append(status2.text)
-			status1.append(dds.text)
-			status1.append(title.text)
-			print(status1.text)
-			print(dds.text)
-	
-			print(title.text)
-			#print(status)
-	
+				status1.append("Most recent season: %d"%number)			#last aired season
+				status1.append("Aired in: %s"%date)				#year in which it was released
+				status1.append("\n")		
 		for i in range(len(status1)):
-				#print(status1[i])
-				elements=status1[i]
-				status.append(elements)
+			elements=status1[i]
+			status.append(elements)		#list named 'status' having details related to each tv series
+	return status						#return list status
 
 
-	for j in range(len(status)):
-		print(status[j])
-	return status
-#content1=[]
-
-def mail_deliver(email, status):
+def mail_deliver(email, status):				#function for sending mail
 	content1="\n"
 	for i in range(len(status)):
-		print(type(status[i]))
-		content1=content1+(status[i]).encode("utf-8")+"\n"
-	print("&&&&&&&&&&&&&&&&")
-	print(content1)
+		
+		content1=content1+(status[i]).encode("utf-8")+"\n"   #content which will be mailed to the user
 	content=content1.split()
-	print(content)
-	mail=smtplib.SMTP('smtp.gmail.com',587 )
+	mail=smtplib.SMTP('smtp.gmail.com',587 )		     #smtp mail id and port number
 	mail.ehlo()
 	mail.starttls()
-	mail.login('aman3006preet','aman9391')
-	mail.sendmail('aman3006preet',email,content1)
+	mail.login('aman3006preet','aman9391')			     #username and password of id from which mail is being sent
+	mail.sendmail('aman3006preet',email,content1)		     #(sender'mail id,receiver's mail id,content)
 	mail.close()
-	
+	print("mail delivered")
 
 
 
