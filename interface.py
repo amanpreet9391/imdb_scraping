@@ -18,17 +18,17 @@ def user_interface():
 	passwd="root"
 	)
 
-	connection=MySQLdb.connect(host='localhost',user='root',passwd='root',db='inputDB')
+	connection=MySQLdb.connect(host='localhost',user='root',passwd='root',db='input_DB')
 	cursor=connection.cursor()
 	mycursor = mydb.cursor()
-	mycursor.execute("use inputDB")  #using database inputDB
-	mydb2= mysql.connector.connect(host="localhost",user="root",passwd="root",database="inputDB")
+	mycursor.execute("use input_DB")  #using database inputDB
+	mydb2= mysql.connector.connect(host="localhost",user="root",passwd="root",database="input_DB")
 	mycursor2 = mydb2.cursor()
 
 	
 	for k in range(len(title_list)):
 		names=title_list[k]
-		sql2=("insert into input_table(email,title)Values('%s','%s')"%(email,names))   #storing email address and titles in table 												        input_table
+		sql2=("insert into input_datatable(email,title)Values('%s','%s')"%(email,names))   #storing email address and titles in table 												        input_table
 	
 		
 		cursor.execute(sql2)
