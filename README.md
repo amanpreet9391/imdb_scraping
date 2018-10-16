@@ -13,7 +13,7 @@ Please find the problem statement [here](http://innovaccer.com/media/hackercamp/
 ### Prerequisites
  All the scipts that I have created were tested successfully on macOS & other Linux based OSes with Python 2.7.10 and MySql installed on the system.
 #### 1. Creating Database
-To create databse,script involved `python Create_db.py`. In this database named inputDB will be created.This database include a table named input_table to store email address and title of tv series given by user.
+To create databse,script involved `python Create_db.py`. In this database named inputDB will be created.This database include a table named input_table to store email address and title of tv series given by user.Only once this script is required.After creating database ,`python interface.py` script is used.
 #### 2. User input
 For storing user inputs database is used.`python interface.py`will store values provided by user.
 ![user_input](https://user-images.githubusercontent.com/25201552/47012676-65387880-d162-11e8-81f2-75c367255b90.png)
@@ -42,4 +42,4 @@ An SMTP object has an instance method called sendmail, which is typically used t
 
 
 Function mail_deliver from script `python scrape1.py` is responsible for mailing the datails of tv series to email id provided by user.
- ![email](https://user-images.githubusercontent.com/25201552/47013530-1e984d80-d165-11e8-9d06-0874bff513c5.png)
+ ![email](https://user-images.githubusercontent.com/25201552/47013530-1e984d80-d165-11e8-9d06-0874bff513c5.png).The email id from which mails are sent is `aman3006preet@gmail.com` and password`aman9391`,but this can we changed according to the person using script ` python scrape1.py`,by making few edits mentioned in the code itself.
