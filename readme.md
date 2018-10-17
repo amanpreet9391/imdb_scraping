@@ -51,5 +51,3 @@ An SMTP object has an instance method called sendmail, which is typically used t
 
 * The message − A message as a string formatted as specified in the various RFCs.
 
-
-
