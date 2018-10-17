@@ -64,7 +64,7 @@ def helper(List):							#function to do scraping
 				status1.append("Aired in: %s"%date)			#year in which season started streaming
 			elif(DATE<2017):
 				s="The show has finished streaming all its episodes."
-				#print(s)	
+					
 				status1.append(s)
 				
 				status1.append("Most recent season: %d"%number)		#last aired season
@@ -86,14 +86,10 @@ def helper(List):							#function to do scraping
 			status1.append(title.text)
 			
 		for i in range(len(status1)):
-				#print(status1[i])
+				
 				elements=status1[i]				   #list named 'status' having details related to each tv series
 				status.append(elements)				   #return list status
-				#status.append("\n")				   
-
-
-	#for j in range(len(status)):
-		#print(status[j])
+							   
 	return status
 
 
