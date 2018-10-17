@@ -50,4 +50,6 @@ An SMTP object has an instance method called sendmail, which is typically used t
 * The receivers − A list of strings, one for each recipient.
 
 * The message − A message as a string formatted as specified in the various RFCs.
+Shown below is the screenshot of mail sent to the user
+![email](https://user-images.githubusercontent.com/25201552/47070830-b3578580-d20f-11e8-8b28-df60824a95fc.png)
 
