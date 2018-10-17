@@ -2,10 +2,10 @@
 
 from Create_db import create_db
 from interface import user_interface
-from scrape1 import helper,mail_deliver
+from scrape_related import helper,mail_deliver
 
 
-create_db()   #initially creating database.This function should be executed only once.
+#create_db()   #initially creating database.This function should be executed only once.
 print("Database Created")		
 
 email, title_list = user_interface()   #Taking email address and titles from user.
